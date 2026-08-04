@@ -25,6 +25,42 @@
     "edit": "Edit",
     "search": "Search...",
     "activeBranch": "Active Branch",
-    "language": "Language"
+    "selectBranch": "Select Branch",
+    "noBranch": "No assigned branch",
+    "language": "Language",
+    "admin": "Administrator",
+    "employee": "Employee",
+    "profile": "Profile",
+    "welcomeUser": "Welcome, {{name}}",
+    "systemReady": "Frontend foundation is fully initialized and functional",
+    "comingSoon": "Coming Soon",
+    "underConstruction": "This module is under development and will be available in the upcoming phase.",
+    "goHome": "Back to Dashboard",
+    "reload": "Reload Page",
+    "allRightsReserved": "All rights reserved © {{year}} El-Ma3ras Apparel Factory"
+  },
+  "auth": {
+    "loginTitle": "System Login",
+    "loginSubtitle": "Enter your credentials to access the management portal",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "admin@erp.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "••••••••",
+    "loginButton": "Sign In",
+    "loggingIn": "Signing in...",
+    "emailRequired": "Email address is required",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "invalidCredentials": "Invalid email or password",
+    "logoutSuccess": "Logged out successfully"
+  },
+  "errors": {
+    "notFoundTitle": "Page Not Found (404)",
+    "notFoundDesc": "Sorry, the page you are trying to access does not exist or has been moved.",
+    "unauthorizedTitle": "Access Denied (403)",
+    "unauthorizedDesc": "You do not have permission to view this page. Please contact your system administrator.",
+    "globalErrorTitle": "An Unexpected Error Occurred",
+    "globalErrorDesc": "The application encountered an issue while rendering this component. Please try reloading."
   }
 }
