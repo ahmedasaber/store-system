@@ -1,0 +1,6 @@
+{
+  "name": "el-ma3ras-company-system",
+  "description": "Enterprise Clothing Factory & Branch ERP Inventory, Sales, Purchase & Expense Management System (Bilingual Arabic/English, RTL).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

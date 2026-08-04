@@ -1,0 +1,30 @@
+{
+  "common": {
+    "appName": "El-Ma3ras ERP System",
+    "dashboard": "Dashboard",
+    "branches": "Branches",
+    "users": "Users",
+    "products": "Products",
+    "categories": "Categories",
+    "sizes": "Sizes",
+    "inventory": "Inventory",
+    "customers": "Customers",
+    "suppliers": "Suppliers",
+    "sales": "Sales",
+    "purchases": "Purchases",
+    "returns": "Returns",
+    "transfers": "Stock Transfers",
+    "expenses": "Expenses",
+    "reports": "Reports",
+    "settings": "Settings",
+    "login": "Login",
+    "logout": "Logout",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search...",
+    "activeBranch": "Active Branch",
+    "language": "Language"
+  }
+}

@@ -1,0 +1,6 @@
+import { z } from 'zod';
+
+export const createSupplierSchema = z.object({
+  name: z.string().min(1),
+  phone: z.string().optional(),
+});

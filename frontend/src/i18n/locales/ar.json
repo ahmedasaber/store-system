@@ -1,0 +1,30 @@
+{
+  "common": {
+    "appName": "نظام المعرض لإدارة المصنع والفروع",
+    "dashboard": "لوحة التحكم",
+    "branches": "الفروع",
+    "users": "المستخدمين",
+    "products": "المنتجات",
+    "categories": "الأقسام",
+    "sizes": "المقاسات",
+    "inventory": "المخزون",
+    "customers": "العملاء",
+    "suppliers": "الموردين",
+    "sales": "المبيعات",
+    "purchases": "المشتريات",
+    "returns": "المرتجعات",
+    "transfers": "تحويلات المخزون",
+    "expenses": "المصروفات",
+    "reports": "التقارير",
+    "settings": "الإعدادات",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "search": "بحث...",
+    "activeBranch": "الفرع الحالي",
+    "language": "اللغة"
+  }
+}

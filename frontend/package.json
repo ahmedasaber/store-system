@@ -1,0 +1,37 @@
+{
+  "name": "@el-ma3ras/frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
+    "@tanstack/react-query": "^5.69.0",
+    "axios": "^1.8.1",
+    "i18next": "^24.2.2",
+    "i18next-browser-languagedetector": "^8.0.4",
+    "lucide-react": "^0.475.0",
+    "motion": "^12.4.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
+    "react-i18next": "^15.4.1",
+    "react-router-dom": "^7.2.0",
+    "zod": "^3.25.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.9",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
