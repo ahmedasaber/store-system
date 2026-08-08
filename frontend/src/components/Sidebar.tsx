@@ -42,7 +42,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggleCollapse })
       {/* Brand Header */}
       <div className="h-16 flex items-center px-3.5 border-b border-slate-800 shrink-0 justify-between">
         <div className="flex items-center gap-3 overflow-hidden">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-white shrink-0 shadow-md shadow-blue-500/20">
+          <div className="w-9 h-9 rounded-xl bg-linear-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-white shrink-0 shadow-md shadow-blue-500/20">
             <Factory className="w-5 h-5 text-white" />
           </div>
           {!collapsed && (

@@ -156,7 +156,7 @@ export const CategoriesPage: React.FC = () => {
       {/* Filter / Search Bar */}
       <div className="bg-white p-3.5 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-3">
         <div className="relative flex-1">
-          <Search className="w-4 h-4 text-slate-400 absolute start-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-slate-400 absolute inset-s-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchInput}

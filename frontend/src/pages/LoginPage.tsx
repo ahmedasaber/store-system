@@ -71,7 +71,7 @@ export const LoginPage: React.FC = () => {
       </div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center px-4">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 mb-4">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-linear-to-tr from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 mb-4">
           <Factory className="w-8 h-8" />
         </div>
         <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">
