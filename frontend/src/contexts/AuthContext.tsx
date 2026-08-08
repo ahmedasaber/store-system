@@ -1,15 +1,21 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, ReactNode } from 'react';
 import authService, { UserAuthProfile, AssignedBranchInfo, LoginCredentials } from '../services/authService.js';
+import { tokenStorage } from '../lib/storage/tokenStorage.js';
+import { branchStorage } from '../lib/storage/branchStorage.js';
+import { onUnauthorized } from '../lib/authEvents.js';
 
 interface AuthContextType {
   user: UserAuthProfile | null;
   token: string | null;
+  /** Persisted source of truth for branch selection. */
+  activeBranchId: string | null;
+  /** Convenience lookup derived from user.assignedBranches + activeBranchId. Not itself persisted. */
   activeBranch: AssignedBranchInfo | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => Promise<void>;
-  setActiveBranch: (branch: AssignedBranchInfo) => void;
+  setActiveBranchId: (branchId: string) => void;
   refreshUser: () => Promise<void>;
 }
 
@@ -17,73 +23,77 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserAuthProfile | null>(null);
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('el_ma3ras_token'));
-  const [activeBranch, setActiveBranchState] = useState<AssignedBranchInfo | null>(null);
+  const [token, setToken] = useState<string | null>(() => tokenStorage.getToken());
+  const [activeBranchId, setActiveBranchIdState] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  // Helper to determine initial active branch
-  const syncActiveBranch = useCallback((userData: UserAuthProfile) => {
-    const savedBranchId = localStorage.getItem('el_ma3ras_active_branch');
+  const activeBranch = useMemo<AssignedBranchInfo | null>(() => {
+    if (!user || !activeBranchId) return null;
+    return user.assignedBranches?.find((b) => b.id === activeBranchId) ?? null;
+  }, [user, activeBranchId]);
+
+  const syncActiveBranchId = useCallback((userData: UserAuthProfile) => {
+    const savedBranchId = branchStorage.getActiveBranchId();
     const branches = userData.assignedBranches || [];
 
     if (savedBranchId && branches.some((b) => b.id === savedBranchId)) {
-      const match = branches.find((b) => b.id === savedBranchId)!;
-      setActiveBranchState(match);
+      setActiveBranchIdState(savedBranchId);
     } else if (branches.length > 0) {
-      setActiveBranchState(branches[0]);
-      localStorage.setItem('el_ma3ras_active_branch', branches[0].id);
+      setActiveBranchIdState(branches[0].id);
+      branchStorage.setActiveBranchId(branches[0].id);
     } else {
-      setActiveBranchState(null);
-      localStorage.removeItem('el_ma3ras_active_branch');
+      setActiveBranchIdState(null);
+      branchStorage.clearActiveBranchId();
     }
   }, []);
 
-  // Set active branch manually
-  const setActiveBranch = useCallback((branch: AssignedBranchInfo) => {
-    setActiveBranchState(branch);
-    localStorage.setItem('el_ma3ras_active_branch', branch.id);
+  const setActiveBranchId = useCallback((branchId: string) => {
+    setActiveBranchIdState(branchId);
+    branchStorage.setActiveBranchId(branchId);
   }, []);
 
-  // Fetch /auth/me on app startup if token exists
+  const clearSession = useCallback(() => {
+    tokenStorage.clearToken();
+    branchStorage.clearActiveBranchId();
+    setUser(null);
+    setToken(null);
+    setActiveBranchIdState(null);
+  }, []);
+
   const refreshUser = useCallback(async () => {
-    const existingToken = localStorage.getItem('el_ma3ras_token');
+    const existingToken = tokenStorage.getToken();
     if (!existingToken) {
-      setUser(null);
-      setToken(null);
-      setActiveBranchState(null);
+      clearSession();
       setIsLoading(false);
       return;
     }
-
     try {
       const userData = await authService.getCurrentUser();
       setUser(userData);
       setToken(existingToken);
-      syncActiveBranch(userData);
+      syncActiveBranchId(userData);
     } catch {
-      // Token invalid or expired
-      localStorage.removeItem('el_ma3ras_token');
-      localStorage.removeItem('el_ma3ras_active_branch');
-      setUser(null);
-      setToken(null);
-      setActiveBranchState(null);
+      clearSession();
     } finally {
       setIsLoading(false);
     }
-  }, [syncActiveBranch]);
+  }, [clearSession, syncActiveBranchId]);
 
   useEffect(() => {
     refreshUser();
   }, [refreshUser]);
 
+  // 401s are reported by Axios but handled here — the auth layer decides.
+  useEffect(() => onUnauthorized(() => clearSession()), [clearSession]);
+
   const login = async (credentials: LoginCredentials) => {
     setIsLoading(true);
     try {
       const data = await authService.login(credentials);
-      localStorage.setItem('el_ma3ras_token', data.accessToken);
+      tokenStorage.setToken(data.accessToken);
       setToken(data.accessToken);
       setUser(data.user);
-      syncActiveBranch(data.user);
+      syncActiveBranchId(data.user);
     } finally {
       setIsLoading(false);
     }
@@ -94,11 +104,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     try {
       await authService.logout();
     } finally {
-      localStorage.removeItem('el_ma3ras_token');
-      localStorage.removeItem('el_ma3ras_active_branch');
-      setUser(null);
-      setToken(null);
-      setActiveBranchState(null);
+      clearSession();
       setIsLoading(false);
     }
   };
@@ -106,15 +112,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   return (
     <AuthContext.Provider
       value={{
-        user,
-        token,
-        activeBranch,
-        isLoading,
+        user, token, activeBranchId, activeBranch, isLoading,
         isAuthenticated: !!user && !!token,
-        login,
-        logout,
-        setActiveBranch,
-        refreshUser,
+        login, logout, setActiveBranchId, refreshUser,
       }}
     >
       {children}
@@ -124,9 +124,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
   return context;
 };
 

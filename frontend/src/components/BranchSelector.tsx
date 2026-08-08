@@ -5,11 +5,12 @@ import { useAuth } from '../hooks/useAuth.js';
 
 export const BranchSelector: React.FC = () => {
   const { t } = useTranslation();
-  const { user, activeBranch, setActiveBranch } = useAuth();
+  const { user, activeBranchId, setActiveBranchId } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const assignedBranches = user?.assignedBranches || [];
+  const activeBranchName = user?.assignedBranches?.find((b) => b.id === activeBranchId)?.name;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -35,7 +36,7 @@ export const BranchSelector: React.FC = () => {
     return (
       <div className="flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-medium border border-blue-200/60 shadow-xs">
         <Building2 className="w-4 h-4 text-blue-600" />
-        <span className="font-semibold">{activeBranch?.name || assignedBranches[0].name}</span>
+        <span className="font-semibold">{activeBranchName || assignedBranches[0].name}</span>
       </div>
     );
   }
@@ -49,7 +50,7 @@ export const BranchSelector: React.FC = () => {
         aria-expanded={isOpen}
       >
         <Building2 className="w-4 h-4 text-blue-600" />
-        <span className="max-w-[120px] truncate font-semibold">{activeBranch?.name || t('common.selectBranch')}</span>
+        <span className="max-w-[120px] truncate font-semibold">{activeBranchName || t('common.selectBranch')}</span>
         <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
@@ -59,12 +60,12 @@ export const BranchSelector: React.FC = () => {
             {t('common.activeBranch')}
           </div>
           {assignedBranches.map((branch) => {
-            const isSelected = activeBranch?.id === branch.id;
+            const isSelected = activeBranchId === branch.id;
             return (
               <button
                 key={branch.id}
                 onClick={() => {
-                  setActiveBranch(branch);
+                  setActiveBranchId(branch.id);
                   setIsOpen(false);
                 }}
                 className={`w-full text-start px-3 py-2 text-xs flex items-center justify-between hover:bg-slate-50 transition-colors ${
