@@ -1,7 +1,7 @@
 {
   "common": {
     "appName": "نظام المعرض لإدارة المصنع والفروع",
-    "dashboard": "لوحة التحكم",
+    "dashboard": "الرئيسية",
     "branches": "الفروع",
     "users": "المستخدمين",
     "products": "المنتجات",
@@ -25,6 +25,42 @@
     "edit": "تعديل",
     "search": "بحث...",
     "activeBranch": "الفرع الحالي",
-    "language": "اللغة"
+    "selectBranch": "اختر الفرع",
+    "noBranch": "لا يوجد فرع معين",
+    "language": "اللغة",
+    "admin": "مدير النظام",
+    "employee": "موظف",
+    "profile": "الملف الشخصي",
+    "welcomeUser": "مرحباً بك، {{name}}",
+    "systemReady": "الأساس البرمجي جاهز ويعمل بنجاح",
+    "comingSoon": "قريباً",
+    "underConstruction": "الوحدة قيد التطوير وستكون متاحة في المرحلة القادمة",
+    "goHome": "العودة للرئيسية",
+    "reload": "إعادة تحميل الصفحة",
+    "allRightsReserved": "جميع الحقوق محفوظة © {{year}} مصنع المعرض للبلوزات الحريمي"
+  },
+  "auth": {
+    "loginTitle": "تسجيل الدخول للنظام",
+    "loginSubtitle": "أدخل بيانات الاعتماد الخاصة بك للوصول إلى لوحة التحكم",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "admin@erp.com",
+    "passwordLabel": "كلمة المرور",
+    "passwordPlaceholder": "••••••••",
+    "loginButton": "تسجيل الدخول",
+    "loggingIn": "جاري تسجيل الدخول...",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "passwordMinLength": "كلمة المرور يجب أن لا تقل عن 6 أحرف",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+    "logoutSuccess": "تم تسجيل الخروج بنجاح"
+  },
+  "errors": {
+    "notFoundTitle": "الصفحة غير موجودة (404)",
+    "notFoundDesc": "عذراً، الصفحة التي تحاول الوصول إليها غير موجودة أو تم نقلها.",
+    "unauthorizedTitle": "غير مصرح بالوصول (403)",
+    "unauthorizedDesc": "ليس لديك الصلاحيات الكافية لعرض هذه الصفحة. يرجى التواصل مع مسؤول النظام.",
+    "globalErrorTitle": "حدث خطأ غير متوقع",
+    "globalErrorDesc": "واجه النظام خطأ أثناء تحميل هذا المكون. يرجى محاولة إعادة التحميل."
   }
 }

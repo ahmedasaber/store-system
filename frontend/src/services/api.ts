@@ -1,34 +1,40 @@
 import axios from 'axios';
+import i18n from '../i18n/config.js';
+import { tokenStorage } from '../lib/storage/tokenStorage.js';
+import { branchStorage } from '../lib/storage/branchStorage.js';
+import { emitUnauthorized } from '../lib/authEvents.js';
 
 export const api = axios.create({
-  baseURL: '/api',
+  baseURL: '/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
+// Only responsibility: attach contextual headers.
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('el_ma3ras_token');
+  const token = tokenStorage.getToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
 
-  const activeBranchId = localStorage.getItem('el_ma3ras_active_branch');
+  const activeBranchId = branchStorage.getActiveBranchId();
   if (activeBranchId) {
-    config.headers['x-branch-id'] = activeBranchId;
+    config.headers['X-Branch-ID'] = activeBranchId;
   }
 
-  const lang = localStorage.getItem('i18nextLng') || 'ar';
-  config.headers['Accept-Language'] = lang;
+  config.headers['Accept-Language'] = i18n.language || 'ar';
 
   return config;
 });
 
+// Only reports unauthorized responses. No storage mutation, no navigation —
+// that belongs to the auth layer (AuthContext).
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('el_ma3ras_token');
+      emitUnauthorized();
     }
     return Promise.reject(error);
   },
