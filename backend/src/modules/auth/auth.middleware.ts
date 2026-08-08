@@ -40,3 +40,15 @@ export const authenticate = asyncHandler(
     next();
   }
 );
+
+export const requireRole = (...allowedRoles: string[]) => {
+  return (req: Request, _res: Response, next: NextFunction): void => {
+    if (!req.user) {
+      throw new AppError('Authentication required', 401);
+    }
+    if (!allowedRoles.includes(req.user.userType)) {
+      throw new AppError('Forbidden: You do not have permission to perform this action', 403);
+    }
+    next();
+  };
+};

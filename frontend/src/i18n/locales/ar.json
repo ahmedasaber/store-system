@@ -62,5 +62,33 @@
     "unauthorizedDesc": "ليس لديك الصلاحيات الكافية لعرض هذه الصفحة. يرجى التواصل مع مسؤول النظام.",
     "globalErrorTitle": "حدث خطأ غير متوقع",
     "globalErrorDesc": "واجه النظام خطأ أثناء تحميل هذا المكون. يرجى محاولة إعادة التحميل."
+  },
+  "categories": {
+    "title": "التصنيفات",
+    "addCategory": "إضافة تصنيف",
+    "editCategory": "تعديل التصنيف",
+    "deleteCategory": "حذف التصنيف",
+    "nameAr": "الاسم بالعربي",
+    "nameEn": "الاسم بالإنجليزي",
+    "createdAt": "تاريخ الإنشاء",
+    "actions": "الإجراءات",
+    "status": "الحالة",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "searchPlaceholder": "البحث في التصنيفات بالعربي أو الإنجليزي...",
+    "confirmDeleteTitle": "تأكيد حذف التصنيف",
+    "confirmDeleteMessage": "هل أنت أكرر أنك تريد حذف التصنيف \"{{name}}\"؟",
+    "deleteSuccess": "تم حذف التصنيف بنجاح",
+    "createSuccess": "تم إضافة التصنيف بنجاح",
+    "updateSuccess": "تم تحديث التصنيف بنجاح",
+    "loading": "جاري تحميل التصنيفات...",
+    "emptyTitle": "لا توجد تصنيفات",
+    "emptyDesc": "لم يتم إضافة أي تصنيفات حتى الآن. اضغط على \"إضافة تصنيف\" للبدء.",
+    "errorTitle": "حدث خطأ أثناء تحميل التصنيفات",
+    "nameArRequired": "الاسم بالعربي مطلوب",
+    "nameEnRequired": "الاسم بالإنجليزي مطلوب",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageInfo": "صفحة {{page}} من {{totalPages}} (إجمالي {{total}})"
   }
 }
