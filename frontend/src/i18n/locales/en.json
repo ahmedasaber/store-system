@@ -62,5 +62,33 @@
     "unauthorizedDesc": "You do not have permission to view this page. Please contact your system administrator.",
     "globalErrorTitle": "An Unexpected Error Occurred",
     "globalErrorDesc": "The application encountered an issue while rendering this component. Please try reloading."
+  },
+  "categories": {
+    "title": "Categories",
+    "addCategory": "Add Category",
+    "editCategory": "Edit Category",
+    "deleteCategory": "Delete Category",
+    "nameAr": "Arabic Name",
+    "nameEn": "English Name",
+    "createdAt": "Created At",
+    "actions": "Actions",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "searchPlaceholder": "Search categories in Arabic or English...",
+    "confirmDeleteTitle": "Delete Category",
+    "confirmDeleteMessage": "Are you sure you want to delete category \"{{name}}\"?",
+    "deleteSuccess": "Category deleted successfully",
+    "createSuccess": "Category added successfully",
+    "updateSuccess": "Category updated successfully",
+    "loading": "Loading categories...",
+    "emptyTitle": "No categories found",
+    "emptyDesc": "No categories have been added yet. Click \"Add Category\" to get started.",
+    "errorTitle": "An error occurred while loading categories",
+    "nameArRequired": "Arabic name is required",
+    "nameEnRequired": "English name is required",
+    "previous": "Previous",
+    "next": "Next",
+    "pageInfo": "Page {{page}} of {{totalPages}} (Total {{total}})"
   }
 }

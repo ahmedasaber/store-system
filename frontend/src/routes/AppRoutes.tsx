@@ -4,6 +4,7 @@ import { ProtectedRoute } from '../components/ProtectedRoute.js';
 import { AppLayout } from '../layouts/AppLayout.js';
 import { LoginPage } from '../pages/LoginPage.js';
 import { HomePage } from '../pages/HomePage.js';
+import { CategoriesPage } from '../pages/CategoriesPage.js';
 import { PlaceholderPage } from '../pages/PlaceholderPage.js';
 import { NotFoundPage } from '../pages/NotFoundPage.js';
 import { UnauthorizedPage } from '../pages/UnauthorizedPage.js';
@@ -18,6 +19,7 @@ export const AppRoutes: React.FC = () => {
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route path="/" element={<HomePage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/products" element={<PlaceholderPage moduleName="Products" />} />
           <Route path="/inventory" element={<PlaceholderPage moduleName="Inventory" />} />
           <Route path="/sales" element={<PlaceholderPage moduleName="Sales" />} />
