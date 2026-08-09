@@ -127,7 +127,7 @@ model Category {
 
 model Size {
   id        String    @id @default(uuid())
-  name      String    @unique
+  name      String
   sortOrder Int       @default(0)
   isActive  Boolean   @default(true)
   deletedAt DateTime?

@@ -12,6 +12,7 @@ import {
   ChevronRight,
   Factory,
   Layers,
+  Ruler,
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -26,6 +27,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggleCollapse })
   const navItems = [
     { path: '/', label: t('common.dashboard'), icon: LayoutDashboard },
     { path: '/categories', label: t('common.categories'), icon: Layers },
+    { path: '/sizes', label: t('common.sizes'), icon: Ruler },
     { path: '/products', label: t('common.products'), icon: Package },
     { path: '/inventory', label: t('common.inventory'), icon: Warehouse },
     { path: '/sales', label: t('common.sales'), icon: ShoppingCart },
